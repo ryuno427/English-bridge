@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2457A6">
+  <meta name="description" content="職場で使える英語を記録・復習する個人学習用Webアプリ">
+  <title>English Bridge</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">ENGLISH BRIDGE</p>
+        <h1>今日の学習</h1>
+      </div>
+      <div class="header-actions"><button id="syncButton" class="icon-button" type="button" aria-label="クラウド同期">↻</button><button id="accountButton" class="icon-button" type="button" aria-label="アカウント">♙</button><button id="themeButton" class="icon-button" type="button" aria-label="表示テーマを切り替える">◐</button></div>
+    </header>
+
+    <main id="mainContent" class="content">
+      <aside class="privacy-note" aria-label="機密情報に関する注意">
+        <strong>個人学習用</strong>
+        <span>顧客名、実名、価格、未公開仕様、社内限定情報は入力しないでください。</span>
+      </aside>
+
+      <section class="hero-card" aria-labelledby="reviewTitle">
+        <p class="section-label">今日の復習</p>
+        <div class="hero-row">
+          <div>
+            <h2 id="reviewTitle"><span id="reviewCount">0</span> 枚</h2>
+            <p>まず3秒以内に声に出します。</p>
+          </div>
+          <button class="primary-button" type="button" data-placeholder="復習モード">復習を始める</button>
+        </div>
+      </section>
+
+      <section class="card" aria-labelledby="weeklyTitle">
+        <div class="section-heading">
+          <div>
+            <p class="section-label">今週使う表現</p>
+            <h2 id="weeklyTitle">まだ登録されていません</h2>
+          </div>
+          <span class="badge">0 / 5</span>
+        </div>
+        <p class="muted">復習カードから3～5個を選び、職場で使えた回数を記録します。</p>
+        <button class="secondary-button" type="button" data-placeholder="今週使う表現の設定">表現を選ぶ</button>
+      </section>
+
+      <section class="card" aria-labelledby="goalTitle">
+        <p class="section-label">今日の小さな目標</p>
+        <h2 id="goalTitle">同僚一人に質問する</h2>
+        <label class="check-row">
+          <input id="goalCheck" type="checkbox">
+          <span>達成した</span>
+        </label>
+      </section>
+
+      <section class="summary-grid" aria-label="学習状況">
+        <article class="summary-card">
+          <span id="practiceCount" class="summary-number">0</span>
+          <span>今週の実践</span>
+        </article>
+        <article class="summary-card">
+          <span id="unorganizedCount" class="summary-number">0</span>
+          <span>未整理</span>
+        </article>
+      </section>
+
+      <button class="quick-button" type="button" data-placeholder="クイック記録">
+        <span aria-hidden="true">＋</span> 困った英語を記録
+      </button>
+    </main>
+
+    <nav class="bottom-nav" aria-label="メインメニュー">
+      <button class="nav-item active" type="button" data-view="home" aria-current="page"><span>⌂</span>ホーム</button>
+      <button class="nav-item" type="button" data-view="records"><span>✎</span>記録</button>
+      <button class="nav-item" type="button" data-view="cards"><span>▤</span>カード</button>
+      <button class="nav-item" type="button" data-view="settings"><span>⚙</span>設定</button>
+    </nav>
+  </div>
+
+  <dialog id="noticeDialog">
+    <form method="dialog" class="dialog-card">
+      <h2>基本画面を作成しました</h2>
+      <p id="dialogMessage">この機能は次の作業で追加します。</p>
+      <button class="primary-button" value="close">閉じる</button>
+    </form>
+  </dialog>
+
+  <dialog id="authDialog">
+    <form id="authForm" class="dialog-card">
+      <h2 id="authTitle">クラウド同期</h2>
+      <p id="authStatus" class="muted" aria-live="polite">ログインするとPC・iPhone・iPadで同期できます。</p>
+      <label>メールアドレス<input id="authEmail" type="email" autocomplete="email" required></label>
+      <label>パスワード<input id="authPassword" type="password" autocomplete="current-password" minlength="8" required></label>
+      <div class="dialog-actions">
+        <button id="signInButton" class="primary-button" type="submit">ログイン</button>
+        <button id="signUpButton" class="secondary-button" type="button">新規登録</button>
+        <button id="signOutButton" class="secondary-button" type="button" hidden>ログアウト</button>
+        <button id="closeAuthButton" class="text-button" type="button">閉じる</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./config.js"></script>
+  <script src="./app.js" defer></script>
+</body>
+</html>

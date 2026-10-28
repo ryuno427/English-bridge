@@ -1,0 +1,12 @@
+{
+  "name": "English Bridge",
+  "short_name": "EnglishBridge",
+  "description": "職場で使える英語を記録・復習する個人学習用Webアプリ",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F4F6F8",
+  "theme_color": "#2457A6",
+  "orientation": "portrait-primary"
+}
