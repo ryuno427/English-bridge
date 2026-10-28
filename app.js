@@ -39,7 +39,43 @@ function configurationReady() {
 }
 
 function initializeSupabase() {
-  if (!configurationReady() || !window.supabase?.createClient) return;
+
+  alert("configurationReady = " + configurationReady());
+
+  alert("window.supabase = " + Boolean(window.supabase));
+
+  alert(
+    "window.supabase.createClient = " +
+    Boolean(window.supabase?.createClient)
+  );
+
+  if (!configurationReady()) {
+    alert("config.js 読み込み失敗");
+    return;
+  }
+
+  if (!window.supabase?.createClient) {
+    alert("Supabase CDN 読み込み失敗");
+    return;
+  }
+
+  const cfg = window.ENGLISH_BRIDGE_CONFIG;
+
+  supabaseClient = window.supabase.createClient(
+    cfg.supabaseUrl,
+    cfg.supabasePublishableKey,
+    {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true
+      }
+    }
+  );
+
+  alert("Supabase初期化成功");
+}
+
   const cfg = window.ENGLISH_BRIDGE_CONFIG;
   supabaseClient = window.supabase.createClient(cfg.supabaseUrl, cfg.supabasePublishableKey, {
     auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
